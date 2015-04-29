@@ -18,18 +18,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder ".", "/home/vagrant/play-docker-demo",
-    mount_options: ["dmode=775,fmode=664"]
+    mount_options: ["dmode=775,fmode=775"]
   
   config.vm.provision "shell",
     inline: "sudo apt-get update"
     
   config.vm.provision "docker" do |d|
     d.pull_images "redis:3"
-    d.pull_images "java:openjdk-7-jdk"
+    d.pull_images "java:openjdk-7-jre"
   end
   
   config.vm.provision "shell",
-    inline: "apt-get install -y tofrodos wget zip"
+    inline: "apt-get install -y tofrodos wget zip openjdk-7-jdk"
     
   config.vm.provision "shell",
     inline: "wget https://github.com/docker/compose/releases/download/1.1.0/docker-compose-Linux-x86_64"
