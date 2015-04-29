@@ -1,0 +1,10 @@
+play:
+  image: play-docker-demo:1.0-SNAPSHOT
+  ports:
+    - "9000:9000"
+  links:
+    - redis
+redis:
+  image: redis:3
+  expose:
+    - "6379"
