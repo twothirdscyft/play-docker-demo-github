@@ -1,6 +1,11 @@
 package models
 
-object SimpleRedis {
+trait DataGenerator {
+  def generateData(key: String): Int
+  def getData(key: String): Option[List[String]]
+}
+
+object SimpleRedis extends DataGenerator {
   import play.api.Play.current
   import com.typesafe.plugin.RedisPlugin
   import scala.math
@@ -12,7 +17,7 @@ object SimpleRedis {
     math.floor(math.random * (n - m)).toInt + m
   }
   
-  def generateData(key: String): Int = {
+  override def generateData(key: String): Int = {
     val pool = current.plugin[RedisPlugin].get.sedisPool
     pool.withClient { client =>
       val length = randInt(1, 10)
@@ -25,7 +30,7 @@ object SimpleRedis {
     }
   }
   
-  def getData(key: String): Option[List[String]] = {
+  override def getData(key: String): Option[List[String]] = {
     val pool = current.plugin[RedisPlugin].get.sedisPool
     pool.withClient { client =>
       if (client.exists(key)) {

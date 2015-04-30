@@ -5,5 +5,10 @@
 # Home page
 GET     /                           controllers.Application.index
 
+# Generate Data
+GET     /see                        controllers.Application.generateData
+POST    /gen                        controllers.Application.genData
+GET     /gen                        controllers.Application.getData
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,20 @@
+@(genDataForm: Form[GenData], getDataForm: Form[GenData])
+
+@main("Data Generator") {
+
+    <div>
+        @helper.form(action = routes.Application.genData()) {
+            @helper.inputText(genDataForm("key"))
+        }
+    </div>
+    
+    <div style="margin-top: 2em; margin-bottom: 1em">
+        @helper.form(action = routes.Application.getData()) {
+            @helper.inputText(getDataForm("key"))
+        }
+    </div>
+    
+    <div>
+        
+    </div>
+}
