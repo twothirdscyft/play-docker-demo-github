@@ -5,6 +5,7 @@ machine:
     version: openjdk7
   services:
     - redis
+    - docker
   environment:
     APP_REDIS_HOST: localhost
     APP_REDIS_PORT: 6379
