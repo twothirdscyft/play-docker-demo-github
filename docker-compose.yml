@@ -1,7 +1,7 @@
 play:
-  image: play-docker-demo:1.0-SNAPSHOT
+  image: twothirdscyft/play-docker-demo:0.1-SNAPSHOT
   ports:
-    - "9000:9000"
+    - "80:9000"
   links:
     - redis
 redis:

@@ -2,3 +2,8 @@ play-docker-demo app
 ====================
 
 Using to evaluate continuous integration services.
+
+Docker
+------
+
+Before running `publish:local` run `docker login -u <username> -e <email>`

@@ -1,8 +1,9 @@
-import NativePackagerKeys._
+//import NativePackagerKeys._
+import com.typesafe.sbt.packager.docker._
 
 name := "play-docker-demo"
 
-version := "1.0-SNAPSHOT"
+version := "0.1-SNAPSHOT"
 
 lazy val WrapIntTest = config("it") extend (Test)
 lazy val testAll = TaskKey[Unit]("test-all")
@@ -18,6 +19,7 @@ lazy val wrapIntTestSettings = inConfig(WrapIntTest)(Defaults.testSettings) ++
     
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala)
+  .enablePlugins(DockerPlugin)
   .configs(WrapIntTest)
   .settings(wrapIntTestSettings: _*)
 
@@ -39,5 +41,12 @@ libraryDependencies ++= Seq(
 maintainer := "Thien Nguyen"
 
 dockerBaseImage := "java:openjdk-7-jre"
+
+dockerCommands ++= Seq(
+  Cmd("ENV", "APP_REDIS_HOST=redis"),
+  Cmd("ENV", "APP_REDIS_PORT=6379")
+)
+
+dockerRepository := Some("twothirdscyft")
 
 dockerExposedPorts in Docker := Seq(9000)
