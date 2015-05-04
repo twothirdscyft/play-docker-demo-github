@@ -3,7 +3,7 @@ import com.typesafe.sbt.packager.docker._
 
 name := "play-docker-demo"
 
-version := "0.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 lazy val WrapIntTest = config("it") extend (Test)
 lazy val testAll = TaskKey[Unit]("test-all")
